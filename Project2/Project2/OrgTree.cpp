@@ -278,8 +278,8 @@ void OrgTree::write(string fileName)
 
 /**
 read member function reads an OrgTree from a file inputed into the argument
-Will return a OrgTree if the file contains a properly formatted text version of the OrgTree
-Will return an empty tree if otherwise
+Will return 1 if the file contains a properly formatted (Pre-order) text of the OrgTree
+Will return 0 otherwise
 The asymptotic runtime for this function is Omega(n)
 */
 bool OrgTree::read(string filename)
@@ -309,8 +309,8 @@ bool OrgTree::read(string filename)
 
 		if (input.peek() == ')') {		//formatting error for if the file does not have a Tree Node following the root node
 			cout << "Formatting error2" << endl;
-			return false;
 			delete p;
+			return false;			
 		}
 		getline(input, title, ',');
 		getline(input, name, '\n');
@@ -329,8 +329,8 @@ bool OrgTree::read(string filename)
 				}
 				else {
 					cout << "Formatting error3" << endl;
-					return false;
 					OrgTree::~OrgTree();
+					return false;					
 				}
 			}
 
